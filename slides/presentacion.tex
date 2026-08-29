@@ -7,10 +7,11 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{siunitx}
+\DeclareSIUnit\mmHg{mmHg}
 
-\title{Laboratorio 0}
-\subtitle{Python científico reproducible}
-\author{Luis Carlos Rocha \\ Juan Manuel Buitrago Lancheros \\ Germán Alberto Hidalgo Alvarado}
+\title{Proyecto AASIM}
+\subtitle{Estimación Continua de Presión Arterial vía ECG}
+\author{Equipo E (Juan Manuel Buitrago, Luis Carlos Rocha, German Alberto Hidalgo)}
 \date{\today}
 
 \begin{document}
@@ -19,46 +20,58 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Problema y Arquitectura}
-  \textbf{Pregunta de trabajo:} ¿Es posible reproducir el flujo científico completo sin trasladar \texttt{.venv} ni modificar rutas?\\
-  \vspace{1em}
-  \textbf{Arquitectura aplicada:}
+\begin{frame}{Problema y arquitectura}
+  \textbf{Problema:} los monitores de presión arterial de manguito generan
+  ``puntos ciegos clínicos'' que impiden anticipar crisis hipertensivas.
+
+  \vspace{0.5em}
+  \textbf{Estructura PICO}
   \begin{itemize}
-      \item \textbf{Herramientas:} \texttt{uv} (pyproject.toml, uv.lock), \texttt{pytest}, \texttt{Ruff}.
-      \item \textbf{Lógica aislada:} \texttt{src/python\_scientific/}
-      \item \textbf{Orquestación única:} \texttt{scripts/reproduce.py}
-      \item \textbf{Salidas controladas:} \texttt{data/}, \texttt{results/}, \texttt{figures/}
+    \item \textbf{P:} Adultos con registros simultáneos de ECG y presión arterial.
+    \item \textbf{I:} SaMD con Machine Learning sobre el ECG continuo para predecir PAS, PAD y PAM.
+    \item \textbf{C:} Esfigmomanómetros electrónicos validados (\textit{ground truth}).
+    \item \textbf{O:} MAE, RMSE y \% de predicciones en rango clínicamente aceptable.
+    \item \textbf{T:} Ventanas de adquisición de 30 s a 5 min.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Métodos y Validación}
-  \textbf{Parámetros sintéticos:}
+\begin{frame}{Métodos y validación}
+  \textbf{Estrategia de datos}
   \begin{itemize}
-      \item $F_s = \SI{250}{\hertz}$, Duración $= \SI{8}{\second}$, Semilla $2026$.
+    \item Extracción de características (p. ej. HRV) controlando confusores: edad, sexo, medicamentos, postura.
+    \item Particiones sin fuga de datos: un mismo paciente no aparece en entrenamiento y validación/prueba.
+    \item \textbf{Baseline:} regresión lineal sobre el Tiempo de Tránsito del Pulso (PTT).
+    \item \textbf{SOTA:} arquitecturas de Deep Learning para bioseñales, usadas como comparación.
   \end{itemize}
-  \vspace{1em}
-  \textbf{Pruebas Críticas (Pytest):}
-  \begin{itemize}
-      \item Algebra Lineal (tolerancias numéricas).
-      \item Derivada e Integral (funciones analíticas $t^2$).
-      \item Validadores de configuración (casos límite y faltantes).
-  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Criterios de éxito}
+  \begin{table}
+    \centering
+    \begin{tabular}{llc}
+      \toprule
+      Tipo & Métrica & Umbral \\
+      \midrule
+      Primaria & MAE PAS/PAD & $\le 5$ \si{\mmHg} \\
+      Primaria & RMSE & $\le 8$ \si{\mmHg} \\
+      Secundaria & Correlación (r) & $\ge 0.85$ \\
+      Técnica & Latencia de inferencia & $\le 5$ s \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
 \end{frame}
 
 \begin{frame}{Resultados}
   \centering
-  \includegraphics[width=0.65\linewidth]{figures/summary.png}
+  \includegraphics[width=0.88\linewidth]{figures/summary.png}
 \end{frame}
 
-\begin{frame}{Reproducibilidad y Limitaciones}
-  \textbf{Demostración externa:}
-  Sincronización de dependencias exactas ejecutando \texttt{uv sync --locked}.
-  \vspace{1em}\\
-  \textbf{Limitaciones conocidas:}
+\begin{frame}{Reproducibilidad y limitaciones}
   \begin{itemize}
-      \item El análisis opera sobre datos generados de forma sintética (modelo no fisiológico).
-      \item La derivada discreta sufre amplificación extrema del ruido aleatorio añadido.
-      \item La integral acumulada arrastra desviación lineal si la señal posee Offset DC real.
+    \item \textbf{Evaluación por subgrupos:} métricas desglosadas por edad, sexo y comorbilidades para mitigar sesgos algorítmicos (Riesgo R2).
+    \item \textbf{Privacidad:} anonimización irreversible de registros fisiológicos antes del pipeline de TI (RNF1).
+    \item \textbf{Control de calidad de señal:} si el ECG presenta ruido excesivo, el sistema omite la predicción en vez de generar falsos positivos (RF4).
+    \item \textbf{Alcance:} resultados válidos dentro de las ventanas y poblaciones definidas en el PICO; no sustituye el diagnóstico clínico.
   \end{itemize}
 \end{frame}
 

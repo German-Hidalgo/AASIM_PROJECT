@@ -1,0 +1,27 @@
+[project]
+name = "python-scientific"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "German Alberto Hidalgo Alvarado", email = "german.hidalgo-a@mail.escuelaing.edu.co" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.9,<4",
+    "numpy>=2,<3",
+    "scipy>=1.14,<2",
+]
+
+[project.scripts]
+python-scientific = "python_scientific:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<10",
+    "ruff>=0.12,<1",
+]

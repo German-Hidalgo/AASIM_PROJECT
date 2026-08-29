@@ -17,6 +17,9 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 
+% Añadir ruta de búsqueda de imágenes
+\graphicspath{{reports/}{./}}
+
 \title{Proyecto AASIM - Fase 1: Diseño y Planificación \\ \large Estimación Continua de Presión Arterial vía ECG}
 \author{Equipo E (Juan Manuel Buitrago, Luis Carlos Rocha, German Alberto Hidalgo)}
 \date{\today}
@@ -44,7 +47,7 @@ Siguiendo la metodología de estructuración de proyectos clínicos, el problema
 A continuación se detalla gráficamente la estructura funcional del proyecto, dividida por las áreas principales (Clínica, Ingeniería TI, Ética y Pacientes), evidenciando los requisitos, riesgos y supuestos de cada una.
 
 % Incluir la figura solo si el archivo existe; si no, omitirla sin error
-\IfFileExists{Stakeholders_y_requisitos.jpeg}{%
+\IfFileExists{reports/Stakeholders_y_requisitos.jpeg}{%
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=\textwidth]{Stakeholders_y_requisitos.jpeg}
