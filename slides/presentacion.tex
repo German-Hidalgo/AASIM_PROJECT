@@ -1,0 +1,65 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\title{Laboratorio 0}
+\subtitle{Python científico reproducible}
+\author{Luis Carlos Rocha \\ Juan Manuel Buitrago Lancheros \\ Germán Alberto Hidalgo Alvarado}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Problema y Arquitectura}
+  \textbf{Pregunta de trabajo:} ¿Es posible reproducir el flujo científico completo sin trasladar \texttt{.venv} ni modificar rutas?\\
+  \vspace{1em}
+  \textbf{Arquitectura aplicada:}
+  \begin{itemize}
+      \item \textbf{Herramientas:} \texttt{uv} (pyproject.toml, uv.lock), \texttt{pytest}, \texttt{Ruff}.
+      \item \textbf{Lógica aislada:} \texttt{src/python\_scientific/}
+      \item \textbf{Orquestación única:} \texttt{scripts/reproduce.py}
+      \item \textbf{Salidas controladas:} \texttt{data/}, \texttt{results/}, \texttt{figures/}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Métodos y Validación}
+  \textbf{Parámetros sintéticos:}
+  \begin{itemize}
+      \item $F_s = \SI{250}{\hertz}$, Duración $= \SI{8}{\second}$, Semilla $2026$.
+  \end{itemize}
+  \vspace{1em}
+  \textbf{Pruebas Críticas (Pytest):}
+  \begin{itemize}
+      \item Algebra Lineal (tolerancias numéricas).
+      \item Derivada e Integral (funciones analíticas $t^2$).
+      \item Validadores de configuración (casos límite y faltantes).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados}
+  \centering
+  \includegraphics[width=0.65\linewidth]{figures/summary.png}
+\end{frame}
+
+\begin{frame}{Reproducibilidad y Limitaciones}
+  \textbf{Demostración externa:}
+  Sincronización de dependencias exactas ejecutando \texttt{uv sync --locked}.
+  \vspace{1em}\\
+  \textbf{Limitaciones conocidas:}
+  \begin{itemize}
+      \item El análisis opera sobre datos generados de forma sintética (modelo no fisiológico).
+      \item La derivada discreta sufre amplificación extrema del ruido aleatorio añadido.
+      \item La integral acumulada arrastra desviación lineal si la señal posee Offset DC real.
+  \end{itemize}
+\end{frame}
+
+\end{document}
