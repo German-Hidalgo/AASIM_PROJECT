@@ -1,0 +1,9 @@
+{
+  "mejor_valor": 21.43201499942933,
+  "mejores_params": {
+    "alpha": 16.792216953784937
+  },
+  "n_trials": 8,
+  "semilla": 20260920,
+  "tarea": "regresion"
+}

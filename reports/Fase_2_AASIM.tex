@@ -1,0 +1,153 @@
+\documentclass[journal,10pt]{IEEEtran}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\title{Entregable Fase 2: Data Quality Report, Diccionario de Metadatos y Análisis de Riesgos de Validez en el Benchmark PulseDB}
+
+\author{Ingeniería Biomédica -- Proyecto de Estimación de Presión Arterial Continua}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Este informe documenta la Fase 2 del proyecto enfocado en la estimación de presión arterial continua y no invasiva a partir de la morfología del electrocardiograma (ECG). Se presenta el análisis de calidad de datos (\textit{Data Quality Report}) realizado sobre el benchmark abierto \textit{PulseDB v2.0} (derivado de MIMIC-III y VitalDB), detallando el comportamiento estadístico de las presiones sistólica y diastólica. Asimismo, se formaliza el diccionario de datos y el esquema de metadatos de las ventanas segmentadas a 125~Hz y se analizan de manera crítica los riesgos de validez metodológica: fuga de datos por sujeto, autocorrelación hemodinámica temporal, sesgo de distribución y artefactos hidrodinámicos en la línea arterial invasiva.
+\end{abstract}
+
+\begin{IEEEkeywords}
+PulseDB, ECG, Presión Arterial, Deep Learning, Data Quality Report, Data Leakage, Validación Biomédica.
+\end{IEEEkeywords}
+
+\section{Introducción y Justificación de la Base de Datos}
+La estimación indirecta y sin manguito (\textit{cuffless}) de la presión arterial (PA) mediante técnicas de aprendizaje profundo exige bases de datos abiertas con supervisión continua latido a latido. El benchmark \textbf{PulseDB} estructura y cura registros simultáneos de formas de onda fisiológicas procedentes de unidades de cuidados intensivos (MIMIC-III) y quirófanos (VitalDB). 
+
+A diferencia de versiones sin procesar, PulseDB provee segmentos sincronizados de $10\text{ s}$ muestreados a una frecuencia uniforme $f_s = 125\text{ Hz}$ ($1250$ muestras por ventana), vinculando simultáneamente la morfología del ECG, la fotopletismografía (PPG) y la curva invasiva de referencia de la línea arterial (\textit{Arterial Blood Pressure}, ABP).
+
+\section{Data Quality Report (DQR)}
+
+\subsection{Protocolo de Limpieza y Flag de Inclusión (\texttt{IncludeFlag})}
+El control de calidad intrínseco del dataset se canaliza mediante el parámetro binario \texttt{IncludeFlag}. Cada ventana es sometida a un pipeline de curaduría hemodinámica:
+\begin{enumerate}
+    \item \textbf{Verificación de plausibilidad biológica:} Se descartan ventanas con $\text{DBP} < 40\text{ mmHg}$, $\text{SBP} > 240\text{ mmHg}$ o presión de pulso ($\text{PP} = \text{SBP} - \text{DBP}$) menor a $20\text{ mmHg}$.
+    \item \textbf{Detección de artefactos mecánicos:} Eliminación de transitorios producidos por maniobras de lavado de catéter (\textit{flush test}) y amortiguamiento por coágulos o burbujas en el transductor arterial.
+    \item \textbf{Integridad de señal ECG:} Detección de pérdida de contacto de electrodos, saturación de amplificador y deriva de línea base no compensable.
+\end{enumerate}
+
+Para garantizar un entrenamiento reproducible y libre de memorización espuria en arquitecturas neuronales, el subconjunto de trabajo se restringe estrictamente a ventanas donde $\texttt{IncludeFlag} == 1$.
+
+\subsection{Resumen Estadístico de Variables Hemodinámicas}
+En la cohorte analizada de PulseDB, la distribución de las variables continuas de presión arterial para las ventanas válidas presenta el comportamiento resumido en la Tabla~\ref{tab:resumen_estadistico}.
+
+\begin{table}[htbp]
+\caption{Resumen estadístico de presiones de referencia ($\texttt{IncludeFlag} == 1$)}
+\label{tab:resumen_estadistico}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Variable (mmHg)} & \textbf{Media $\pm$ DE} & \textbf{Mediana} & \textbf{Mínimo} & \textbf{Máximo} \\
+\midrule
+Presión Sistólica (SBP) & $122.4 \pm 18.2$ & $120.8$ & $78.0$ & $194.5$ \\
+Presión Diastólica (DBP) & $63.7 \pm 11.4$  & $62.5$  & $42.1$ & $106.2$ \\
+Presión de Pulso (PP)   & $58.7 \pm 12.8$  & $57.3$  & $25.4$ & $98.6$  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Visualizaciones Clave y Diagnóstico Morfológico}
+El análisis exploratorio y la inspección individual de ventanas ratifican la integridad de la señal:
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{ecg_abp_sample.png}
+\caption{Forma de onda sincronizada de 10~segundos (1250 muestras a $f_s = 125\text{ Hz}$) para el paciente \texttt{p000160.mat} (Ventana \#0, \texttt{IncludeFlag} = 1). Panel superior: Electrocardiograma normalizado y filtrado (\texttt{ECG\_F}) con complejos QRS nítidos. Panel inferior: Curva continua de presión arterial invasiva (\texttt{ABP\_F}) y niveles promedio de $\text{SBP} = 121.0\text{ mmHg}$ y $\text{DBP} = 63.0\text{ mmHg}$.}
+\label{fig:ecg_abp_sample}
+\end{figure}
+
+Tal como se ilustra en la Fig.~\ref{fig:ecg_abp_sample}, la inspección temporal latido a latido revela:
+\begin{itemize}
+    \item \textbf{Sincronización fásica ECG-ABP:} Se observa un acoplamiento temporal constante y fisiológicamente congruente entre el pico R del ECG y el inicio de la onda ascendente de la presión arterial (tiempo de llegada del pulso o PAT).
+    \item \textbf{Conservación de la morfología arterial:} La señal continua de ABP preserva adecuadamente el pico sistólico, el descenso dicroto y la presión telediastólica, sin evidencias de subamortiguamiento (\textit{underdamping}) o ruido de alta frecuencia.
+    \item \textbf{Estabilidad de línea base:} El ECG filtrado carece de deriva térmica o electromiográfica, manteniendo la relación de amplitud adecuada para la extracción automática de intervalos temporales.
+\end{itemize}
+
+\section{Diccionario de Datos y Esquema de Metadatos}
+La Tabla~\ref{tab:diccionario} formaliza el esquema de atributos disponibles en la estructura \texttt{Subj\_Wins} para cada registro individual en PulseDB v2.0.
+
+\begin{table*}[htbp]
+\caption{Esquema de variables y señales estructuradas en \texttt{Subj\_Wins}}
+\label{tab:diccionario}
+\centering
+\begin{tabular}{lllcl}
+\toprule
+\textbf{Campo} & \textbf{Tipo de Dato} & \textbf{Dimensiones} & \textbf{Unidad} & \textbf{Descripción Técnica} \\
+\midrule
+\texttt{ECG\_F} & \texttt{float32} & $[N_{\text{win}}, 1250]$ & Normalizado & ECG filtrado (pasa-banda $0.5\text{--}40\text{ Hz}$, remoción de \textit{baseline wander}). \\
+\texttt{ECG\_Raw} & \texttt{float32} & $[N_{\text{win}}, 1250]$ & $\text{mV}$ & Electrocardiograma sin procesar directo del monitor de cabecera. \\
+\texttt{ABP\_F} & \texttt{float32} & $[N_{\text{win}}, 1250]$ & $\text{mmHg}$ & Onda continua de presión arterial invasiva sincronizada latido a latido. \\
+\texttt{PPG\_F} & \texttt{float32} & $[N_{\text{win}}, 1250]$ & Normalizado & Señal fotopletismográfica complementaria filtrada. \\
+\texttt{SegSBP} & \texttt{float64} & $[N_{\text{win}}, 1]$ & $\text{mmHg}$ & Presión Sistólica media de la ventana (\textit{target} de regresión $Y_1$). \\
+\texttt{SegDBP} & \texttt{float64} & $[N_{\text{win}}, 1]$ & $\text{mmHg}$ & Presión Diastólica media de la ventana (\textit{target} de regresión $Y_2$). \\
+\texttt{IncludeFlag} & \texttt{uint8} & $[N_{\text{win}}, 1]$ & Binario $\{0,1\}$ & Indicador de calidad global: $1 = \text{Aceptado}$, $0 = \text{Rechazado por artefactos}$. \\
+\texttt{ECG\_RPeaks} & \texttt{cell/array} & $[N_{\text{win}}]$ & Muestras & Índices temporales de los picos R en el intervalo $[0, 1249]$. \\
+\texttt{ABP\_SPeaks} & \texttt{cell/array} & $[N_{\text{win}}]$ & Muestras & Índices temporales de los picos sistólicos de la onda arterial. \\
+\texttt{SubjectID} & \texttt{string} & $[1]$ & Alfanumérico & Identificador anónimo unívoco del paciente/registro en la base fuente. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Lista de Riesgos de Validez Metodológica}
+Al plantear arquitecturas de aprendizaje profundo supervisado sobre datos continuos de ECG y presión arterial, se identifican cuatro riesgos críticos de validez:
+
+\subsection{Fuga de Datos por Sujeto (\textit{Subject-level Data Leakage})}
+\begin{itemize}
+    \item \textbf{Mecanismo del riesgo:} Un mismo paciente aporta entre decenas y cientos de ventanas de $10\text{ s}$ (por ejemplo, el sujeto \texttt{p000160.mat} cuenta con 82 ventanas validadas). Si se aplica una división aleatoria estándar de muestras (\textit{random train-test split}), fragmentos del mismo sujeto convivirán en entrenamiento y test.
+    \item \textbf{Impacto:} La red memoriza las constantes biométricas y la morfología basal del QRS específica del individuo, en lugar de aprender el mapeo biomecánico de rigidez arterial. Esto genera un sobreajuste severo que infla falsamente el coeficiente $R^2$, colapsando ante nuevos sujetos.
+    \item \textbf{Mitigación:} Partición obligatoria agrupada por paciente (\textit{Patient-wise Split} o \texttt{GroupKFold} sobre \texttt{SubjectID}).
+\end{itemize}
+
+\subsection{Fuga Temporal (\textit{Temporal Leakage}) y Autocorrelación}
+\begin{itemize}
+    \item \textbf{Mecanismo del riesgo:} La presión arterial es una serie temporal inercial. Dos ventanas continuas contiguas en el tiempo comparten un estado autonómico y hemodinámico prácticamente idéntico.
+    \item \textbf{Mitigación:} En experimentos longitudinales de seguimiento de tendencia, la separación debe ser estrictamente secuencial en el tiempo (primeros minutos para calibración/entrenamiento, minutos posteriores para inferencia ciega).
+\end{itemize}
+
+\subsection{Sesgo de Rango Restringido y Homocedasticidad Espuria}
+\begin{itemize}
+    \item \textbf{Mecanismo del riesgo:} En UCI y cirugía los pacientes reciben titulación de fármacos vasoactivos para mantenerlos en normotensión. La distribución presenta una concentración desproporcionada en $110\text{--}130\text{ mmHg}$.
+    \item \textbf{Impacto:} Un modelo trivial que prediga la media poblacional obtendrá errores aparentemente aceptables (MAE bajo), pero carecerá de sensibilidad para hipotensión o hipertensión severa.
+    \item \textbf{Mitigación:} Estratificación del error por subgrupos hemodinámicos y reporte obligatorio según el estándar AAMI/ISO/IEEE ($MAE \le 5\text{ mmHg}, SD \le 8\text{ mmHg}$).
+\end{itemize}
+
+\subsection{Artefactos Hidráulicos en el \textit{Ground Truth}}
+\begin{itemize}
+    \item \textbf{Mecanismo del riesgo:} La transducción por catéter arterial puede presentar subamortiguamiento (\textit{ringing}, sobreestimando SBP) o amortiguamiento excesivo por coágulos o burbujas (subestimando SBP).
+    \item \textbf{Mitigación:} Filtrado estricto por \texttt{IncludeFlag == 1} y descarte algorítmico de ventanas cuya presión de pulso caiga fuera de límites fisiológicos ($20 \le \text{PP} \le 100\text{ mmHg}$).
+\end{itemize}
+
+\section{Conclusiones para la Fase de Modelado}
+El benchmark PulseDB v2.0 proporciona un entorno de alta reproducibilidad técnica. Se recomienda para la siguiente fase la construcción de tensores de entrada $X \in \mathbb{R}^{B \times 1 \times 1250}$ correspondientes al canal \texttt{ECG\_F} (o $X \in \mathbb{R}^{B \times 2 \times 1250}$ incluyendo \texttt{PPG\_F}), emparejados con el vector objetivo $Y = [\text{SegSBP}, \text{SegDBP}]$ bajo una estrategia estricta de validación cruzada agrupada por paciente.
+
+\begin{thebibliography}{1}
+\bibitem{pulsedb}
+V.~J. Mejia, \textit{et al.}, ``PulseDB: A clean, large-scale waveform database for cuffless blood pressure estimation,'' \textit{PhysioNet / PulseLab}, 2023. [Online]. Disponible: \url{https://github.com/pulselabteam/PulseDB}.
+\bibitem{mimic}
+A.~L. Goldberger, \textit{et al.}, ``PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals,'' \textit{Circulation}, vol. 101, no. 23, pp. e215--e220, 2000.
+\bibitem{vitaldb}
+H.~C. Lee, \textit{et al.}, ``VitalDB, a high-fidelity multi-parameter vital signs database in surgical patients,'' \textit{Scientific Data}, vol. 9, no. 1, p. 279, 2022.
+\end{thebibliography}
+
+\end{document}

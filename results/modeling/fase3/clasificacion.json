@@ -1,0 +1,237 @@
+{
+  "balance_por_particion": [
+    {
+      "clase": "normotenso",
+      "n": 55,
+      "proporcion": 0.3179,
+      "split": "test"
+    },
+    {
+      "clase": "elevada",
+      "n": 58,
+      "proporcion": 0.3353,
+      "split": "test"
+    },
+    {
+      "clase": "hipertensa",
+      "n": 60,
+      "proporcion": 0.3468,
+      "split": "test"
+    },
+    {
+      "clase": "normotenso",
+      "n": 438,
+      "proporcion": 0.6339,
+      "split": "train"
+    },
+    {
+      "clase": "elevada",
+      "n": 175,
+      "proporcion": 0.2533,
+      "split": "train"
+    },
+    {
+      "clase": "hipertensa",
+      "n": 78,
+      "proporcion": 0.1129,
+      "split": "train"
+    },
+    {
+      "clase": "normotenso",
+      "n": 212,
+      "proporcion": 0.8618,
+      "split": "val"
+    },
+    {
+      "clase": "elevada",
+      "n": 30,
+      "proporcion": 0.122,
+      "split": "val"
+    },
+    {
+      "clase": "hipertensa",
+      "n": 4,
+      "proporcion": 0.0163,
+      "split": "val"
+    }
+  ],
+  "clases_por_fold": {
+    "test": {
+      "elevada": 58,
+      "hipertensa": 60,
+      "normotenso": 55
+    },
+    "train": {
+      "elevada": 175,
+      "hipertensa": 78,
+      "normotenso": 438
+    },
+    "val": {
+      "elevada": 30,
+      "hipertensa": 4,
+      "normotenso": 212
+    }
+  },
+  "matrices": {
+    "LogReg": [
+      [
+        233,
+        178,
+        27
+      ],
+      [
+        118,
+        50,
+        7
+      ],
+      [
+        36,
+        40,
+        2
+      ]
+    ],
+    "NaiveBayes": [
+      [
+        149,
+        149,
+        140
+      ],
+      [
+        109,
+        39,
+        27
+      ],
+      [
+        59,
+        15,
+        4
+      ]
+    ],
+    "SVM": [
+      [
+        339,
+        97,
+        2
+      ],
+      [
+        149,
+        26,
+        0
+      ],
+      [
+        66,
+        12,
+        0
+      ]
+    ]
+  },
+  "n_filas_raw": 15,
+  "plan_b": "Plan B: alguna clase es minoritaria (<5%) o ausente en una partición; fusionar a 2 clases (hipenso/normo-tenso vs hipertenso) y anotar el motivo en el informe.",
+  "plan_b_detallado": {
+    "balance_2clases": [
+      {
+        "clase": "no_normotenso",
+        "n": 118,
+        "proporcion": 0.6821,
+        "split": "test"
+      },
+      {
+        "clase": "normotenso",
+        "n": 55,
+        "proporcion": 0.3179,
+        "split": "test"
+      },
+      {
+        "clase": "no_normotenso",
+        "n": 253,
+        "proporcion": 0.3661,
+        "split": "train"
+      },
+      {
+        "clase": "normotenso",
+        "n": 438,
+        "proporcion": 0.6339,
+        "split": "train"
+      },
+      {
+        "clase": "no_normotenso",
+        "n": 34,
+        "proporcion": 0.1382,
+        "split": "val"
+      },
+      {
+        "clase": "normotenso",
+        "n": 212,
+        "proporcion": 0.8618,
+        "split": "val"
+      }
+    ],
+    "definicion": "normotenso (PAS < 120 mmHg) vs no_normotenso (PAS >= 120 mmHg); colapsa elevada+hipertensa del esquema de 3 clases",
+    "matrices": {
+      "LogReg": [
+        [
+          232,
+          206
+        ],
+        [
+          149,
+          104
+        ]
+      ],
+      "NaiveBayes": [
+        [
+          171,
+          267
+        ],
+        [
+          174,
+          79
+        ]
+      ],
+      "SVM": [
+        [
+          310,
+          128
+        ],
+        [
+          200,
+          53
+        ]
+      ]
+    },
+    "tabla_modelos": [
+      {
+        "balanced_accuracy": 0.4217,
+        "macro_f1": 0.3917,
+        "modelo": "LogReg"
+      },
+      {
+        "balanced_accuracy": 0.4103,
+        "macro_f1": 0.3301,
+        "modelo": "NaiveBayes"
+      },
+      {
+        "balanced_accuracy": 0.4738,
+        "macro_f1": 0.4211,
+        "modelo": "SVM"
+      }
+    ]
+  },
+  "tabla_modelos": [
+    {
+      "balanced_accuracy": 0.2866,
+      "macro_f1": 0.2405,
+      "modelo": "LogReg"
+    },
+    {
+      "balanced_accuracy": 0.2434,
+      "macro_f1": 0.2017,
+      "modelo": "NaiveBayes"
+    },
+    {
+      "balanced_accuracy": 0.3414,
+      "macro_f1": 0.2708,
+      "modelo": "SVM"
+    }
+  ]
+}

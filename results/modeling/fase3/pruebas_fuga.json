@@ -1,0 +1,9 @@
+{
+  "brecha_al_sujeto_mmhg": -2.835,
+  "mae_rf_label_shuffle": 9.58908515482073,
+  "mae_rf_split_aleatorio": 8.216243222439847,
+  "mae_rf_split_sujeto": 11.05163072276542,
+  "n_sujetos_train": 18,
+  "n_sujetos_val": 3,
+  "shuffle_vs_dummy": 9.589
+}

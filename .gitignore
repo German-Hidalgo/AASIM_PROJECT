@@ -1,0 +1,13 @@
+# Datos clínicos y derivados: no versionar (RNF1).
+data/raw/*
+!data/raw/README.md
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/metadata/tabla_correspondencia_RESTRINGIDA.csv
+
+# Cachés y compilaciones
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/

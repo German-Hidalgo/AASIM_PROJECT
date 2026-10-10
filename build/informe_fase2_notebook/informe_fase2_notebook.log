@@ -1,0 +1,303 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.9)  25 SEP 2026 09:32
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**informe_fase2_notebook.tex
+(./informe_fase2_notebook.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-07-20>
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2026/06/14 v26.9 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count284
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2084.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2086.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2088.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2089.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2090.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2092.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2117.
+\U@D=\dimen151
+\l@unhyphenated=\language91
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/generic/babel/txtbabel.
+def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count285
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/generic/babel/locale/es
+/babel-spanish.tex)
+Package babel Info: Importing font and identification data for 'spanish'
+(babel)             from babel-es.ini. Reported on input line 4380.
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/generic/babel-spanish/s
+panish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks19
+\es@quotdepth=\count286
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
+))
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) 
+on input line 5.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1)
+ on input line 5.
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/geometry/geometry
+.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/graphics/keyval.s
+ty
+Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.st
+y
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count287
+\Gm@cntv=\count288
+\c@Gm@tempcnt=\count289
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks21
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs
+.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen160
+\lightrulewidth=\dimen161
+\cmidrulewidth=\dimen162
+\belowrulesep=\dimen163
+\belowbottomsep=\dimen164
+\aboverulesep=\dimen165
+\abovetopsep=\dimen166
+\cmidrulesep=\dimen167
+\cmidrulekern=\dimen168
+\defaultaddspace=\dimen169
+\@cmidla=\count290
+\@cmidlb=\count291
+\@aboverulesep=\dimen170
+\@belowrulesep=\dimen171
+\@thisruleclass=\count292
+\@lastruleclass=\count293
+\@thisrulewidth=\dimen172
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/graphics/graphicx
+.sty
+Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/graphics/graphics
+.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/graphics-cfg/grap
+hics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/graphics-def/pdft
+ex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen173
+\Gin@req@width=\dimen174
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count294
+\float@exts=\toks22
+\float@box=\box53
+\@float@everytoks=\toks23
+\@floatcapt=\box54
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/l3backend/l3backe
+nd-pdftex.def
+File: l3backend-pdftex.def 2026-07-20 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count295
+) (./informe_fase2_notebook.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 8.
+)
+\openout1 = `informe_fase2_notebook.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Info: Redefining \. on input line 14.
+LaTeX Info: Redefining \% on input line 14.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 472.03123pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 652.70622pt, 71.13188pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=472.03123pt
+* \textheight=652.70622pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/context/base/mkii/supp-
+pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count296
+\scratchdimen=\dimen175
+\scratchbox=\box55
+\nofMPsegments=\count297
+\nofMParguments=\count298
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count299
+\MPscratchDim=\dimen176
+\MPnumerator=\count300
+\makeMPintoPDFobject=\count301
+\everyMPtoPDFconversion=\toks25
+)
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epst
+opdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/run/media/german/Disco1Tb/texlive/2026/texmf-dist/tex/latex/latexconfig/epsto
+pdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package babel Info: Main language set to 'spanish'.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 22.
+ [1
+
+{/run/media/german/Disco1Tb/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdft
+ex.map}]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 75.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 75.
+ [2]
+<figuras/distribuciones.png, id=16, 1084.05pt x 303.534pt>
+File: figuras/distribuciones.png Graphic file (type png)
+<use figuras/distribuciones.png>
+Package pdftex.def Info: figuras/distribuciones.png  used on input line 115.
+(pdftex.def)             Requested size: 472.03123pt x 132.17053pt.
+ [3 <./figuras/distribuciones.png>]
+(./informe_fase2_notebook.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+)
+ ***********
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-07-20>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 3542 strings out of 467159
+ 59471 string characters out of 5400761
+ 496723 words of memory out of 5000000
+ 32814 multiletter control sequences out of 15000+600000
+ 632445 words of font info for 56 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,8n,65p,322b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</run/media/german/Disco1Tb/texlive/2026/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb></run/media/german/Disco1Tb/texlive/2026/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb></run/media/german/Disco1Tb/texlive/2026/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></run/media/german/Disco1Tb/texli
+ve/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></run/media/german/
+Disco1Tb/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></run
+/media/german/Disco1Tb/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></run/media/german/Disco1Tb/texlive/2026/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmtt10.pfb>
+Output written on informe_fase2_notebook.pdf (3 pages, 233313 bytes).
+PDF statistics:
+ 52 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+

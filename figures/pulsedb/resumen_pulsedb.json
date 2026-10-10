@@ -1,0 +1,690 @@
+{
+  "catalogo": {
+    "n_sujetos": 5361,
+    "n_segmentos": 5245454,
+    "sujetos_menores_18": 29,
+    "por_fuente": {
+      "MIMIC": {
+        "sujetos": 2423,
+        "segmentos": 3791004,
+        "seg_mediana": 913.0,
+        "seg_max": 24941
+      },
+      "VitalDB": {
+        "sujetos": 2938,
+        "segmentos": 1454450,
+        "seg_mediana": 414.0,
+        "seg_max": 3297
+      }
+    },
+    "adultos": 5332,
+    "edad_adultos": {
+      "MIMIC": {
+        "count": 2421.0,
+        "mean": 63.5,
+        "std": 15.8,
+        "min": 18.0,
+        "25%": 54.0,
+        "50%": 64.0,
+        "75%": 76.0,
+        "max": 89.0
+      },
+      "VitalDB": {
+        "count": 2911.0,
+        "mean": 59.2,
+        "std": 14.4,
+        "min": 18.0,
+        "25%": 51.0,
+        "50%": 61.0,
+        "75%": 70.0,
+        "max": 92.0
+      }
+    },
+    "sexo_por_fuente": {
+      "MIMIC": {
+        "F": 1018,
+        "M": 1405
+      },
+      "VitalDB": {
+        "F": 1330,
+        "M": 1608
+      }
+    },
+    "disponibilidad_bmi": {
+      "MIMIC": 0.0,
+      "VitalDB": 1.0
+    },
+    "bmi_vital": {
+      "count": 2938.0,
+      "mean": 23.1,
+      "std": 3.5,
+      "min": 11.5,
+      "25%": 20.7,
+      "50%": 22.9,
+      "75%": 25.1,
+      "max": 43.2
+    },
+    "estadisticas_etiquetas": {
+      "MIMIC": {
+        "sbp_mmhg": {
+          "mean": 123.7,
+          "std": 22.7,
+          "min": 13.0,
+          "1%": 79.5,
+          "50%": 121.9,
+          "99%": 181.9,
+          "max": 267.3
+        },
+        "dbp_mmhg": {
+          "mean": 61.5,
+          "std": 13.3,
+          "min": 1.2,
+          "1%": 36.3,
+          "50%": 60.0,
+          "99%": 99.4,
+          "max": 230.2
+        }
+      },
+      "VitalDB": {
+        "sbp_mmhg": {
+          "mean": 115.5,
+          "std": 19.1,
+          "min": 22.5,
+          "1%": 77.4,
+          "50%": 114.0,
+          "99%": 166.4,
+          "max": 286.6
+        },
+        "dbp_mmhg": {
+          "mean": 62.8,
+          "std": 12.1,
+          "min": 2.4,
+          "1%": 38.0,
+          "50%": 62.0,
+          "99%": 94.0,
+          "max": 277.9
+        }
+      }
+    },
+    "censura_catalogo": {
+      "por_condicion": {
+        "PAS < 70": 12388,
+        "PAS > 240": 72,
+        "PAD < 40": 125724,
+        "PAD > 140": 1960,
+        "PP < 20": 36381
+      },
+      "excluidas": 162337,
+      "fraccion": 0.030948131467743306,
+      "fraccion_por_fuente": {
+        "MIMIC": 0.035615894892223804,
+        "VitalDB": 0.01878167004709684
+      }
+    },
+    "cuotas_iso": {
+      "todo": [
+        {
+          "rango": "PAS <= 100 mmHg",
+          "n": 871534,
+          "fraccion_observada": 0.1662,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAS >= 160 mmHg",
+          "n": 273041,
+          "fraccion_observada": 0.0521,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD <= 60 mmHg",
+          "n": 2519647,
+          "fraccion_observada": 0.4803,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD >= 100 mmHg",
+          "n": 40841,
+          "fraccion_observada": 0.0078,
+          "fraccion_minima": 0.05,
+          "cumple": false
+        }
+      ],
+      "MIMIC": [
+        {
+          "rango": "PAS <= 100 mmHg",
+          "n": 562438,
+          "fraccion_observada": 0.1484,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAS >= 160 mmHg",
+          "n": 245962,
+          "fraccion_observada": 0.0649,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD <= 60 mmHg",
+          "n": 1889499,
+          "fraccion_observada": 0.4984,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD >= 100 mmHg",
+          "n": 35551,
+          "fraccion_observada": 0.0094,
+          "fraccion_minima": 0.05,
+          "cumple": false
+        }
+      ],
+      "VitalDB": [
+        {
+          "rango": "PAS <= 100 mmHg",
+          "n": 309096,
+          "fraccion_observada": 0.2125,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAS >= 160 mmHg",
+          "n": 27079,
+          "fraccion_observada": 0.0186,
+          "fraccion_minima": 0.05,
+          "cumple": false
+        },
+        {
+          "rango": "PAD <= 60 mmHg",
+          "n": 630148,
+          "fraccion_observada": 0.4333,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD >= 100 mmHg",
+          "n": 5290,
+          "fraccion_observada": 0.0036,
+          "fraccion_minima": 0.05,
+          "cumple": false
+        }
+      ],
+      "admisibles": [
+        {
+          "rango": "PAS <= 100 mmHg",
+          "n": 778967,
+          "fraccion_observada": 0.1532,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAS >= 160 mmHg",
+          "n": 271311,
+          "fraccion_observada": 0.0534,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD <= 60 mmHg",
+          "n": 2385908,
+          "fraccion_observada": 0.4694,
+          "fraccion_minima": 0.05,
+          "cumple": true
+        },
+        {
+          "rango": "PAD >= 100 mmHg",
+          "n": 33197,
+          "fraccion_observada": 0.0065,
+          "fraccion_minima": 0.05,
+          "cumple": false
+        }
+      ]
+    },
+    "spearman_pas_pad": 0.5786699914148998,
+    "concentracion_top1pct": 0.1072845172219602,
+    "segmentos_por_sujeto": {
+      "count": 5361.0,
+      "mean": 978.4,
+      "std": 1536.2,
+      "min": 1.0,
+      "25%": 114.0,
+      "50%": 490.0,
+      "75%": 1175.0,
+      "max": 24941.0
+    },
+    "figuras": [
+      "figures/pulsedb/histograma_pas_pad_pulsedb.png",
+      "figures/pulsedb/histograma_pas_pad_pulsedb.svg"
+    ]
+  },
+  "muestra": {
+    "ventanas": 2043,
+    "sujetos": 41,
+    "lineas_descartadas": 0,
+    "por_fuente": {
+      "MIMIC": {
+        "sujetos": 21,
+        "ventanas": 1054
+      },
+      "VitalDB": {
+        "sujetos": 20,
+        "ventanas": 989
+      }
+    },
+    "ventanas_por_sujeto": {
+      "count": 41.0,
+      "mean": 49.8,
+      "std": 19.4,
+      "min": 1.0,
+      "25%": 52.0,
+      "50%": 60.0,
+      "75%": 60.0,
+      "max": 60.0
+    },
+    "motivo_censura_etiquetas": {
+      "0": 1979,
+      "3": 42,
+      "5": 16,
+      "2": 5,
+      "1": 1
+    },
+    "include_flag": {
+      "1": 2042,
+      "-1": 1
+    },
+    "ppg_abp_corr": {
+      "MIMIC": {
+        "count": 1054.0,
+        "mean": 0.947,
+        "std": 0.025,
+        "min": 0.9,
+        "25%": 0.927,
+        "50%": 0.947,
+        "75%": 0.966,
+        "max": 0.996
+      },
+      "VitalDB": {
+        "count": 988.0,
+        "mean": 0.943,
+        "std": 0.025,
+        "min": 0.9,
+        "25%": 0.923,
+        "50%": 0.943,
+        "75%": 0.964,
+        "max": 0.993
+      }
+    },
+    "retardo_abp_ms": {
+      "MIMIC": {
+        "count": 1054.0,
+        "mean": 168.0,
+        "std": 259.0,
+        "min": -792.0,
+        "5%": -443.0,
+        "25%": 240.0,
+        "50%": 280.0,
+        "75%": 296.0,
+        "95%": 336.0,
+        "max": 376.0
+      },
+      "VitalDB": {
+        "count": 988.0,
+        "mean": -25.0,
+        "std": 410.0,
+        "min": -776.0,
+        "5%": -552.0,
+        "25%": -336.0,
+        "50%": -176.0,
+        "75%": 464.0,
+        "95%": 496.0,
+        "max": 528.0
+      }
+    },
+    "retardo_fuera_150ms": 0.9569260890846794,
+    "cambio_signo_lag_dentro_sujeto": 0.27240910474464847,
+    "senal_cruda": {
+      "MIMIC": {
+        "raw_std_mv": 0.146,
+        "raw_ptp_mv": 1.0
+      },
+      "VitalDB": {
+        "raw_std_mv": 0.142,
+        "raw_ptp_mv": 1.0
+      }
+    },
+    "fraccion_flatline_mayor_0": 0.0,
+    "red_detectada_fraccion": {
+      "MIMIC": 0.417,
+      "VitalDB": 0.337
+    },
+    "red_frecuencias": {
+      "49": 89,
+      "50": 262,
+      "51": 78,
+      "59": 2,
+      "60": 335,
+      "61": 6
+    },
+    "sqi_medianas": {
+      "MIMIC": {
+        "bsqi": 1.0,
+        "ksqi": 13.3,
+        "psqi": 0.52,
+        "ssqi": 2.61
+      },
+      "VitalDB": {
+        "bsqi": 1.0,
+        "ksqi": 13.66,
+        "psqi": 0.5,
+        "ssqi": 2.78
+      }
+    },
+    "rechazo_global": 0.4566813509544787,
+    "rechazo_por_fuente": {
+      "MIMIC": 0.4165,
+      "VitalDB": 0.4995
+    },
+    "motivos_rechazo": {
+      "pSQI": 750,
+      "kSQI|pSQI": 103,
+      "bSQI|pSQI": 48,
+      "bSQI|kSQI|pSQI": 26,
+      "bSQI": 3,
+      "kSQI": 2,
+      "no_finito": 1
+    },
+    "rechazo_por_subgrupo": [
+      {
+        "dimensión": "fuente",
+        "subgrupo": "MIMIC",
+        "sujetos": 21,
+        "ventanas": 1054,
+        "rechazo (%)": 41.7,
+        "pSQI mediana": 0.524
+      },
+      {
+        "dimensión": "fuente",
+        "subgrupo": "VitalDB",
+        "sujetos": 20,
+        "ventanas": 989,
+        "rechazo (%)": 49.9,
+        "pSQI mediana": 0.501
+      },
+      {
+        "dimensión": "sexo",
+        "subgrupo": "F",
+        "sujetos": 19,
+        "ventanas": 883,
+        "rechazo (%)": 39.9,
+        "pSQI mediana": 0.525
+      },
+      {
+        "dimensión": "sexo",
+        "subgrupo": "M",
+        "sujetos": 22,
+        "ventanas": 1160,
+        "rechazo (%)": 50.1,
+        "pSQI mediana": 0.5
+      },
+      {
+        "dimensión": "edad",
+        "subgrupo": "18-64",
+        "sujetos": 29,
+        "ventanas": 1434,
+        "rechazo (%)": 35.0,
+        "pSQI mediana": 0.534
+      },
+      {
+        "dimensión": "edad",
+        "subgrupo": "65 o más",
+        "sujetos": 12,
+        "ventanas": 609,
+        "rechazo (%)": 70.8,
+        "pSQI mediana": 0.415
+      },
+      {
+        "dimensión": "estrato PAS",
+        "subgrupo": "<= 100",
+        "sujetos": 29,
+        "ventanas": 426,
+        "rechazo (%)": 41.8,
+        "pSQI mediana": 0.521
+      },
+      {
+        "dimensión": "estrato PAS",
+        "subgrupo": "101-139",
+        "sujetos": 39,
+        "ventanas": 1309,
+        "rechazo (%)": 45.0,
+        "pSQI mediana": 0.514
+      },
+      {
+        "dimensión": "estrato PAS",
+        "subgrupo": "140-159",
+        "sujetos": 24,
+        "ventanas": 199,
+        "rechazo (%)": 46.7,
+        "pSQI mediana": 0.509
+      },
+      {
+        "dimensión": "estrato PAS",
+        "subgrupo": ">= 160",
+        "sujetos": 7,
+        "ventanas": 108,
+        "rechazo (%)": 66.7,
+        "pSQI mediana": 0.29
+      }
+    ],
+    "cociente_rechazo_edad": 2.0228571428571427,
+    "sujetos_rechazo_mayor_30": 22,
+    "sujetos_rechazo_90_o_mas": 11,
+    "sujetos_sin_rechazo": 6,
+    "rechazo_por_sujeto_cuantiles": {
+      "0.25": 0.05,
+      "0.5": 0.433,
+      "0.75": 0.9,
+      "0.9": 1.0
+    },
+    "f1_picos_r": {
+      "mediana": 1.0,
+      "menor_0_9_todas": 0.09153206069505629,
+      "menor_0_9_aceptadas": 0.0045045045045045045,
+      "menor_0_9_rechazadas": 0.19506966773847803,
+      "mediana_rechazadas": 1.0
+    },
+    "censura_vs_rechazo": {
+      "etiqueta_censurada_y_rechazada": 44,
+      "etiqueta_censurada": 64
+    },
+    "perdida_neta_muestra": 0.46647087616250615,
+    "rechazo_por_criterio": {
+      "bSQI": 77,
+      "kSQI": 131,
+      "pSQI": 927,
+      "mas_de_uno": 177
+    },
+    "red_por_fuente_hz": {
+      "MIMIC": {
+        "49": 49,
+        "50": 53,
+        "51": 7,
+        "59": 2,
+        "60": 322,
+        "61": 6
+      },
+      "VitalDB": {
+        "49": 40,
+        "50": 209,
+        "51": 71,
+        "60": 13
+      }
+    },
+    "aceptadas": 1110,
+    "fc_aceptadas": {
+      "count": 1110.0,
+      "mean": 82.3,
+      "std": 16.8,
+      "min": 47.8,
+      "5%": 55.7,
+      "50%": 81.5,
+      "95%": 108.7,
+      "max": 150.0
+    },
+    "nan_caracteristicas": {
+      "feat_hrv_sampen": 0.397,
+      "feat_hrv_sd2_ms": 0.051,
+      "feat_hrv_apen": 0.05,
+      "feat_hrv_lf_hf": 0.05,
+      "feat_hrv_sd1_ms": 0.05,
+      "feat_hrv_sdnn_ms": 0.049,
+      "feat_hrv_pnn50_pct": 0.049,
+      "feat_hrv_vlf_ms2": 0.049,
+      "feat_hrv_hf_ms2": 0.049,
+      "feat_hrv_mean_nn_ms": 0.049,
+      "feat_hrv_rmssd_ms": 0.049,
+      "feat_hrv_lf_ms2": 0.049,
+      "feat_pr_interval_ms": 0.042,
+      "feat_qtc_bazett_ms": 0.001,
+      "feat_qtc_fridericia_ms": 0.001,
+      "feat_t_amplitude_mv": 0.001,
+      "feat_qt_interval_ms": 0.001,
+      "feat_wpd_h_13": 0.001,
+      "feat_wpd_e_14": 0.001,
+      "feat_wpd_h_14": 0.001,
+      "feat_wpd_e_15": 0.001,
+      "feat_wpd_h_15": 0.001,
+      "feat_wpd_entropy_total": 0.001,
+      "feat_glcm_qrs_contrast": 0.001,
+      "feat_glcm_qrs_correlation": 0.001,
+      "feat_glcm_qrs_energy": 0.001,
+      "feat_glcm_qrs_homogeneity": 0.001,
+      "feat_wpd_e_11": 0.001,
+      "feat_wpd_h_11": 0.001,
+      "feat_wpd_e_13": 0.001,
+      "feat_wpd_h_12": 0.001,
+      "feat_wpd_e_12": 0.001,
+      "feat_wpd_h_08": 0.001,
+      "feat_glcm_t_correlation": 0.001,
+      "feat_glcm_t_energy": 0.001,
+      "feat_glcm_qrs_asm": 0.001,
+      "feat_glcm_t_contrast": 0.001,
+      "feat_glcm_t_homogeneity": 0.001,
+      "feat_glcm_t_asm": 0.001
+    },
+    "morfologia": {
+      "feat_qrs_duration_ms": {
+        "count": 1110.0,
+        "mean": 90.0,
+        "std": 15.0,
+        "min": 64.0,
+        "5%": 72.0,
+        "50%": 88.0,
+        "95%": 112.0,
+        "max": 212.0
+      },
+      "feat_pr_interval_ms": {
+        "count": 1063.0,
+        "mean": 213.0,
+        "std": 46.0,
+        "min": 128.0,
+        "5%": 144.0,
+        "50%": 232.0,
+        "95%": 264.0,
+        "max": 264.0
+      },
+      "feat_qt_interval_ms": {
+        "count": 1109.0,
+        "mean": 365.0,
+        "std": 86.0,
+        "min": 179.0,
+        "5%": 223.0,
+        "50%": 357.0,
+        "95%": 505.0,
+        "max": 707.0
+      },
+      "feat_qtc_bazett_ms": {
+        "count": 1109.0,
+        "mean": 423.0,
+        "std": 96.0,
+        "min": 201.0,
+        "5%": 247.0,
+        "50%": 419.0,
+        "95%": 622.0,
+        "max": 785.0
+      }
+    },
+    "pr_en_limite_busqueda": 0.06491063029162747,
+    "pr_maximo_ms": 264.0,
+    "spearman_fc": {
+      "pas": -0.1298412604264064,
+      "pad": 0.12775779044885982
+    },
+    "spearman_top": [
+      {
+        "característica": "feat_glcm_qrs_homogeneity",
+        "rho_PAS": 0.372,
+        "rho_PAD": 0.176
+      },
+      {
+        "característica": "feat_glcm_qrs_contrast",
+        "rho_PAS": -0.369,
+        "rho_PAD": -0.188
+      },
+      {
+        "característica": "feat_r_amplitude_mv",
+        "rho_PAS": 0.008,
+        "rho_PAD": 0.328
+      },
+      {
+        "característica": "feat_hrv_hf_ms2",
+        "rho_PAS": 0.291,
+        "rho_PAD": 0.001
+      },
+      {
+        "característica": "feat_hrv_apen",
+        "rho_PAS": -0.283,
+        "rho_PAD": -0.034
+      },
+      {
+        "característica": "feat_qrs_duration_ms",
+        "rho_PAS": -0.065,
+        "rho_PAD": -0.282
+      },
+      {
+        "característica": "feat_s_depth_mv",
+        "rho_PAS": -0.278,
+        "rho_PAD": 0.088
+      },
+      {
+        "característica": "feat_hrv_sd1_ms",
+        "rho_PAS": 0.244,
+        "rho_PAD": -0.07
+      }
+    ],
+    "spearman_max_abs": 0.3716047523501095,
+    "latencia_ms": {
+      "media": 12.512195721899845,
+      "p50": 11.872304999087646,
+      "p95": 31.11132059948432,
+      "p99": 43.36810440001498,
+      "max": 93.82304700011446
+    },
+    "psd_ventanas": {
+      "aceptadas": 108,
+      "rechazadas": 114
+    },
+    "figuras": [
+      "figures/pulsedb/psd_aceptadas_vs_rechazadas_pulsedb.png",
+      "figures/pulsedb/psd_aceptadas_vs_rechazadas_pulsedb.svg",
+      "figures/pulsedb/retardo_abp_pulsedb.png",
+      "figures/pulsedb/retardo_abp_pulsedb.svg",
+      "figures/pulsedb/rechazo_por_subgrupo_pulsedb.png",
+      "figures/pulsedb/rechazo_por_subgrupo_pulsedb.svg",
+      "figures/pulsedb/correlacion_spearman_pulsedb.png",
+      "figures/pulsedb/correlacion_spearman_pulsedb.svg"
+    ]
+  }
+}

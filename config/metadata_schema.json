@@ -1,0 +1,382 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:aasim:schema:recording-metadata:1.1.0",
+  "title": "AASIM - Esquema de metadatos de adquisición (Fase 2)",
+  "description": "Esquema formal de metadatos de cada sesión de monitorización del sistema AASIM (SaMD para la estimación continua de PAS/PAD/PAM a partir de ECG). Cinco módulos: procedencia y privacidad (RNF1), parámetros técnicos de adquisición (RF1, RNF3, RNF4), contexto demográfico y fisiológico (R2, S4), sincronización metrológica con el comparador clínico (RF3, R3, S1, S3) y control de calidad (RF4, R4). Responsables: Juan Manuel Buitrago (módulo de referencia y sincronización), Luis Carlos Rocha (módulo de adquisición y versionado) y German Alberto Hidalgo (módulos de procedencia/privacidad, demografía y control de calidad).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "provenance",
+    "acquisition",
+    "demographics",
+    "reference_sync",
+    "quality_control"
+  ],
+  "properties": {
+    "schema_version": {
+      "description": "Versión semántica del esquema con la que se validó el registro.",
+      "type": "string",
+      "const": "1.1.0"
+    },
+    "provenance": {
+      "title": "Módulo 1 - Procedencia, trazabilidad y privacidad (RNF1)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject_id",
+        "recording_id",
+        "dataset_version",
+        "site_id",
+        "source_institution",
+        "anonymization_protocol",
+        "custody_key_status"
+      ],
+      "properties": {
+        "subject_id": {
+          "description": "Identificador opaco del paciente. Se asigna mediante una permutación aleatoria; no se deriva de ningún dato identificable. La tabla de correspondencia permanece bajo custodia separada y se destruye al congelar el conjunto de datos (irreversibilidad).",
+          "type": "string",
+          "pattern": "^SUBJ-[0-9]{5}$"
+        },
+        "recording_id": {
+          "description": "Identificador único de la sesión de monitorización continua.",
+          "type": "string",
+          "pattern": "^REC-[0-9]{7}$"
+        },
+        "dataset_version": {
+          "description": "Versión semántica de la base de datos consolidada (MAYOR.MENOR.PARCHE).",
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "site_id": {
+          "description": "Código opaco del centro asistencial; unidad de la partición site-wise.",
+          "type": "string",
+          "pattern": "^SITE-[0-9]{3}$"
+        },
+        "source_institution": {
+          "description": "Institución médica de origen (nombre o sigla ya seudonimizada según el protocolo de gobernanza).",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "anonymization_protocol": {
+          "description": "Estándar formal de desidentificación aplicado antes de la incorporación de los registros al entorno de desarrollo.",
+          "type": "string",
+          "enum": [
+            "HIPAA_SAFE_HARBOR",
+            "GDPR_PSEUDONYMISATION",
+            "HIPAA_SAFE_HARBOR_AND_GDPR_PSEUDONYMISATION"
+          ]
+        },
+        "custody_key_status": {
+          "description": "Estado de las llaves/tabla de correspondencia de anonimización. 'pseudonymised_key_retained' es seudonimización reversible por el custodio; 'destroyed_irreversible' es anonimización irreversible tras el congelamiento.",
+          "type": "string",
+          "enum": ["pseudonymised_key_retained", "destroyed_irreversible"]
+        }
+      }
+    },
+    "acquisition": {
+      "title": "Módulo 2 - Parámetros técnicos de adquisición (RF1, RNF3, RNF4)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ecg_sampling_frequency_hz",
+        "adc_resolution_bits",
+        "sensor_hardware_model",
+        "leads_utilized",
+        "primary_lead",
+        "lead_contact_impedance_kohm",
+        "mains_frequency_hz"
+      ],
+      "properties": {
+        "ecg_sampling_frequency_hz": {
+          "description": "Frecuencia de muestreo nativa del ECG (Hz). Piso: 125 Hz (criterio ratificado por el equipo para la Fase 2).",
+          "type": "number",
+          "minimum": 125,
+          "maximum": 20000
+        },
+        "adc_resolution_bits": {
+          "description": "Resolución de cuantificación del convertidor análogo-digital (bits). Mínimo: 16.",
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 32
+        },
+        "adc_full_scale_mv": {
+          "description": "Rango pico a pico del ADC expresado en mV; necesario para calcular la tasa de saturación en los rieles.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sensor_hardware_model": {
+          "description": "Referencia de hardware del sensor/transductor biomédico.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "leads_utilized": {
+          "description": "Derivaciones registradas (se prioriza la derivación II).",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["I", "II", "III", "aVR", "aVL", "aVF", "V1", "V2", "V3", "V4", "V5", "V6"]
+          }
+        },
+        "primary_lead": {
+          "description": "Derivación empleada por el pipeline; debe pertenecer a leads_utilized.",
+          "type": "string",
+          "enum": ["I", "II", "III", "aVR", "aVL", "aVF", "V1", "V2", "V3", "V4", "V5", "V6"]
+        },
+        "lead_contact_impedance_kohm": {
+          "description": "Impedancia electrodo-piel tolerada (kOhm). No debe superar 50 kOhm.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "mains_frequency_hz": {
+          "description": "Frecuencia nominal de la red eléctrica del sitio de adquisición (Hz).",
+          "type": "integer",
+          "enum": [50, 60]
+        },
+        "recording_duration_s": {
+          "description": "Duración total de la sesión (s).",
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "demographics": {
+      "title": "Módulo 3 - Contexto demográfico y fisiológico (R2, S4)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "age_bracket",
+        "biological_sex",
+        "bmi_category",
+        "posture",
+        "active_cardiovascular_medication",
+        "known_arrhythmias"
+      ],
+      "properties": {
+        "age_bracket": {
+          "description": "Estrato etario decenal (no se almacena la edad exacta ni la fecha de nacimiento).",
+          "type": "string",
+          "enum": ["18-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80-89", "90+"]
+        },
+        "biological_sex": {
+          "description": "Sexo biológico.",
+          "type": "string",
+          "enum": ["female", "male", "intersex"]
+        },
+        "bmi_category": {
+          "description": "Categoría de índice de masa corporal (clasificación OMS). 'not_available' cuando la fuente no aporta talla y peso.",
+          "type": "string",
+          "enum": [
+            "underweight",
+            "normal",
+            "overweight",
+            "obese_class_1",
+            "obese_class_2",
+            "obese_class_3",
+            "not_available"
+          ]
+        },
+        "posture": {
+          "description": "Postura corporal durante el trazado. 'not_available' cuando la fuente pública no la registra.",
+          "type": "string",
+          "enum": ["supine", "seated", "standing", "ambulatory", "not_available"]
+        },
+        "active_cardiovascular_medication": {
+          "description": "Medicación cardiovascular activa con impacto autonómico o vascular. Lista vacía = sin medicación; el valor 'unknown' es excluyente.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "beta_blocker",
+              "ace_inhibitor",
+              "arb",
+              "calcium_channel_blocker",
+              "diuretic",
+              "other_cardiovascular",
+              "unknown"
+            ]
+          },
+          "if": { "contains": { "const": "unknown" } },
+          "then": { "maxItems": 1 }
+        },
+        "known_arrhythmias": {
+          "description": "Arritmias basales diagnosticadas. Lista vacía = sin arritmias conocidas; el valor 'unknown' es excluyente.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "atrial_fibrillation",
+              "atrial_flutter",
+              "ventricular_ectopy",
+              "conduction_block",
+              "other",
+              "unknown"
+            ]
+          },
+          "if": { "contains": { "const": "unknown" } },
+          "then": { "maxItems": 1 }
+        },
+        "hypertension_status_baseline": {
+          "description": "Clasificación basal de hipertensión (AHA/ACC) usada para la auditoría de cuotas de representatividad.",
+          "type": "string",
+          "enum": [
+            "normal",
+            "elevated",
+            "stage_1",
+            "stage_2",
+            "hypertensive_crisis",
+            "unknown"
+          ]
+        },
+        "comorbidities": {
+          "description": "Comorbilidades de interés para la auditoría de subgrupos protegidos (categorías gruesas; principio de mínima necesidad).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "diabetes",
+              "vascular_stiffness",
+              "intraventricular_conduction_disorder",
+              "chronic_kidney_disease"
+            ]
+          }
+        }
+      }
+    },
+    "reference_sync": {
+      "title": "Módulo 4 - Referencia y sincronización metrológica (RF3, R3, S1, S3)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_device_type",
+        "reference_device_model",
+        "reference_measurement_uncertainty_mmhg",
+        "reference_validation_standard",
+        "sync_protocol",
+        "sampling_offset_ms",
+        "max_timestamp_uncertainty_ms",
+        "clock_skew_tolerance_ppm"
+      ],
+      "properties": {
+        "reference_device_type": {
+          "description": "Tecnología del comparador clínico.",
+          "type": "string",
+          "enum": [
+            "oscillometric_brachial_automatic",
+            "invasive_intra_arterial_line",
+            "volume_clamp"
+          ]
+        },
+        "reference_device_model": {
+          "description": "Marca/modelo del comparador clínico.",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "reference_measurement_uncertainty_mmhg": {
+          "description": "Incertidumbre metrológica declarada del comparador (mmHg).",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20
+        },
+        "reference_validation_standard": {
+          "description": "Norma con la que se validó el comparador (S1). 'none_documented' se acepta en el esquema pero impide certificar el registro en el DQR.",
+          "type": "string",
+          "enum": [
+            "ANSI_AAMI_ISO_81060-2",
+            "ANSI_AAMI_ISO_81060-3",
+            "IEEE_1708",
+            "none_documented"
+          ]
+        },
+        "sync_protocol": {
+          "description": "Mecanismo de sincronización temporal entre el adquisidor de ECG y el comparador.",
+          "type": "string",
+          "enum": ["PTP", "NTP", "hardware_trigger", "manual_event_alignment"]
+        },
+        "sampling_offset_ms": {
+          "description": "Retardo temporal absoluto medido entre ambas señales (ms). Debe ser inferior a 50 ms.",
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 50
+        },
+        "max_timestamp_uncertainty_ms": {
+          "description": "Incertidumbre máxima de marca temporal por ciclo (ms). Los ciclos con incertidumbre superior a 10 ms se descartan (S3).",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "clock_skew_tolerance_ppm": {
+          "description": "Deriva máxima de reloj tolerada entre dispositivos (partes por millón). Debe ser inferior a 10 ppm.",
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 10
+        }
+      }
+    },
+    "quality_control": {
+      "title": "Módulo 5 - Control de calidad de la grabación (RF4, R4)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rejection_ratio_percentage", "mean_bsqi_score", "qc_review_required"],
+      "properties": {
+        "n_windows_total": {
+          "description": "Número de ventanas evaluadas en la grabación.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_windows_rejected": {
+          "description": "Número de ventanas con quality_flag = 1.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejection_ratio_percentage": {
+          "description": "Tasa porcentual neta de rechazo de ventanas temporales.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "mean_bsqi_score": {
+          "description": "Promedio del índice de calidad de latidos (bSQI) en la grabación.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mean_ksqi_score": {
+          "description": "Promedio de la curtosis fisiológica (kSQI).",
+          "type": "number",
+          "minimum": 0
+        },
+        "mean_psqi_score": {
+          "description": "Promedio de la potencia espectral relativa (pSQI).",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "saturation_rate_percentage": {
+          "description": "Fracción porcentual de muestras saturadas en los rieles del ADC.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "qc_review_required": {
+          "description": "Verdadero si la grabación requiere auditoría clínica individualizada (tasa de descarte superior al 30 %).",
+          "type": "boolean"
+        }
+      },
+      "if": {
+        "required": ["rejection_ratio_percentage"],
+        "properties": { "rejection_ratio_percentage": { "exclusiveMinimum": 30 } }
+      },
+      "then": { "properties": { "qc_review_required": { "const": true } } }
+    }
+  }
+}

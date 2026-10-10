@@ -1,0 +1,60 @@
+\documentclass{beamer}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\usetheme{Madrid}
+
+\title{Fase 3: Entrenamiento y Modelado Predictivo}
+\subtitle{Sistema AASIM}
+\author{Ingeniería TI}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Objetivos de la Fase 3}
+    \begin{itemize}
+        \item Consolidar la Tabla Base Analítica (ABT).
+        \item Establecer pipelines formales y control de particiones anti-fuga.
+        \item Comparar Baselines (Ridge, SVR) frente a Avanzados (LightGBM, PyTorch).
+        \item Aislar y evaluar el poder predictivo (Ablation).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados de los Baselines}
+    \begin{block}{Observación Crítica}
+    Con una muestra de validación pequeña ($n_{train} \approx 691$ ventanas), el modelo \textbf{SVR} superó la prueba logrando el mejor desempeño.
+    \end{block}
+    
+    \begin{itemize}
+        \item \textbf{SVR:} MAE = $14.69$ mmHg
+        \item \textbf{Dummy (Promedio):} MAE = $16.25$ mmHg
+        \item \textbf{Ridge:} MAE = $28.13$ mmHg
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados de Modelos Avanzados}
+    \begin{block}{Sobreajuste (Overfitting)}
+    Los algoritmos complejos no lograron generalizar con tan poca data, rindiendo por debajo del predictor Dummy.
+    \end{block}
+    
+    \begin{itemize}
+        \item \textbf{Random Forest:} MAE = $19.63$ mmHg
+        \item \textbf{LightGBM:} MAE = $19.64$ mmHg
+        \item \textbf{MLP (PyTorch):} MAE = $32.65$ mmHg
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Siguientes Pasos}
+    \begin{itemize}
+        \item \textbf{Volumetría:} Procesar el conjunto completo de PulseDB (5,361 pacientes) y no solo la muestra exploratoria de 41 pacientes.
+        \item \textbf{Ablation:} Continuar eliminando características morfológicas correlacionadas.
+        \item \textbf{Tuning:} Habilitar la búsqueda Optuna en el servidor final.
+    \end{itemize}
+\end{frame}
+
+\end{document}

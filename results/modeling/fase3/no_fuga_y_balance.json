@@ -1,0 +1,108 @@
+{
+  "advertencias_fuga_objetivo": [],
+  "balance": [
+    {
+      "clase": "normotenso",
+      "n": 55,
+      "proporcion": 0.3179,
+      "split": "test"
+    },
+    {
+      "clase": "elevada",
+      "n": 58,
+      "proporcion": 0.3353,
+      "split": "test"
+    },
+    {
+      "clase": "hipertensa",
+      "n": 60,
+      "proporcion": 0.3468,
+      "split": "test"
+    },
+    {
+      "clase": "normotenso",
+      "n": 438,
+      "proporcion": 0.6339,
+      "split": "train"
+    },
+    {
+      "clase": "elevada",
+      "n": 175,
+      "proporcion": 0.2533,
+      "split": "train"
+    },
+    {
+      "clase": "hipertensa",
+      "n": 78,
+      "proporcion": 0.1129,
+      "split": "train"
+    },
+    {
+      "clase": "normotenso",
+      "n": 212,
+      "proporcion": 0.8618,
+      "split": "val"
+    },
+    {
+      "clase": "elevada",
+      "n": 30,
+      "proporcion": 0.122,
+      "split": "val"
+    },
+    {
+      "clase": "hipertensa",
+      "n": 4,
+      "proporcion": 0.0163,
+      "split": "val"
+    }
+  ],
+  "distribucion_por_particion": [
+    {
+      "max": 206.11,
+      "mean": 131.98,
+      "median": 131.3,
+      "min": 82.22,
+      "n_ventanas": 173,
+      "split": "test",
+      "std": 25.46
+    },
+    {
+      "max": 187.29,
+      "mean": 116.62,
+      "median": 113.25,
+      "min": 66.48,
+      "n_ventanas": 691,
+      "split": "train",
+      "std": 18.33
+    },
+    {
+      "max": 220.34,
+      "mean": 105.31,
+      "median": 101.16,
+      "min": 85.51,
+      "n_ventanas": 246,
+      "split": "val",
+      "std": 15.76
+    }
+  ],
+  "no_fuga": {
+    "certificado_verificado": {
+      "train&test": 0,
+      "train&val": 0,
+      "val&test": 0
+    },
+    "conteos_particion": {
+      "test": 5,
+      "train": 21,
+      "val": 7
+    },
+    "intersecciones_ok": true,
+    "n_particiones": 3,
+    "recomprobacion_abt": {
+      "test&train": 0,
+      "test&val": 0,
+      "train&val": 0
+    },
+    "sujetos_en_varias_particiones": []
+  }
+}

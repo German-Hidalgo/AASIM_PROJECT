@@ -8,9 +8,18 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "h5py>=3.16.0",
+    "jsonschema>=4.26.0",
+    "lightgbm>=4.7.0",
     "matplotlib>=3.9,<4",
     "numpy>=2,<3",
+    "optuna>=5.0.0",
+    "pandas>=3.0.6",
+    "pywavelets>=1.10.0",
+    "scikit-learn>=1.9.1",
     "scipy>=1.14,<2",
+    "torch>=2.14.1",
+    "torchvision>=0.29.1",
 ]
 
 [project.scripts]
@@ -24,4 +33,14 @@ build-backend = "uv_build"
 dev = [
     "pytest>=8.3,<10",
     "ruff>=0.12,<1",
+]
+
+[tool.ruff]
+# Excluye artefactos y el cuaderno exploratorio (Pruebas_jupyter), que no forma
+# parte del pipeline entregable (usa polars/seaborn y requiere su propio entorno).
+exclude = [
+    ".venv",
+    "build",
+    "figures",
+    "src/Pruebas_jupyter/**",
 ]

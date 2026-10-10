@@ -1,0 +1,35 @@
+% Preámbulo común de los informes de la Fase 2 (Proyecto AASIM).
+\usepackage{etoolbox}
+\usepackage{ragged2e}
+\usepackage{pdflscape}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{xcolor}
+% Tipografía: Noto Sans si está instalada; en caso contrario, DejaVu Sans.
+\IfFontExistsTF{Noto Sans}{\setmainfont{Noto Sans}}{\setmainfont{DejaVu Sans}}
+\IfFontExistsTF{Noto Sans Mono}{\setmonofont{Noto Sans Mono}[Scale=0.86]}{\setmonofont{DejaVu Sans Mono}[Scale=0.82]}
+\definecolor{aasimazul}{HTML}{1F4E8C}
+\newcommand{\codigo}[1]{\texttt{#1}}
+\newcommand{\tamtabla}{\footnotesize}
+
+% Tablas compactas y con cabecera repetida.
+\AtBeginEnvironment{longtable}{\tamtabla\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.15}\RaggedRight}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+\sloppy
+
+% Encabezado y pie.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Proyecto AASIM -- Fase 2}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{14pt}
+
+\usepackage{titlesec}
+\titleformat{\section}{\raggedright\Large\bfseries\color{aasimazul}}{}{0pt}{}
+\titleformat{\subsection}{\raggedright\large\bfseries\color{aasimazul}}{}{0pt}{}
+\titleformat{\subsubsection}{\raggedright\normalsize\bfseries}{}{0pt}{}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.1}

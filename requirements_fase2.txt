@@ -1,0 +1,12 @@
+# Dependencias de los módulos de la Fase 2 (proyecto AASIM).
+# Con uv:  uv add PyWavelets pandas jsonschema
+# Las tres primeras ya figuran en pyproject.toml del repositorio.
+numpy>=2,<3
+scipy>=1.14,<2
+matplotlib>=3.9,<4
+PyWavelets>=1.6
+pandas>=2.2
+h5py>=3.10
+# Solo para validar metadatos y ejecutar las pruebas:
+jsonschema>=4.20
+pytest>=8.3

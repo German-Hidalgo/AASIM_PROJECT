@@ -1,0 +1,14 @@
+{
+  "abt_dir": "/home/luisrocha/Escritorio/AASIM_PROYECTO/data/processed/pulsedb_abt",
+  "figura_dir": "/home/luisrocha/Escritorio/AASIM_PROYECTO/results/modeling/fase3/figuras",
+  "generado": "2026-10-10T04:10:56.376538+00:00",
+  "grupo": "subject_id",
+  "log_dir": "/home/luisrocha/Escritorio/AASIM_PROYECTO/build/modeling/registros",
+  "n_jobs": 8,
+  "n_splits": 5,
+  "out_base": "/home/luisrocha/Escritorio/AASIM_PROYECTO/results/modeling/fase3",
+  "particion_dir": "/home/luisrocha/Escritorio/AASIM_PROYECTO/data/processed/pulsedb_particion",
+  "semilla": 20260920,
+  "target": "sbp_mmhg",
+  "usar_mlp": true
+}

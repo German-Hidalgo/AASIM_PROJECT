@@ -1,0 +1,260 @@
+{
+  "cache": {
+    "n_pacientes": 33,
+    "n_ventanas": 1110,
+    "por_particion": [
+      {
+        "n_pacientes": 5,
+        "n_ventanas": 173,
+        "split": "test"
+      },
+      {
+        "n_pacientes": 21,
+        "n_ventanas": 691,
+        "split": "train"
+      },
+      {
+        "n_pacientes": 7,
+        "n_ventanas": 246,
+        "split": "val"
+      }
+    ],
+    "tipo": "abt_derivada",
+    "ventanas_por_paciente_max": 60,
+    "ventanas_por_paciente_media": 33.63636363636363,
+    "ventanas_por_paciente_min": 1
+  },
+  "pacientes": [
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 41,
+      "particion": "test",
+      "sbp_media": 137.4,
+      "subject_id": "SUBJ-01927"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 52,
+      "particion": "test",
+      "sbp_media": 120.6,
+      "subject_id": "SUBJ-02584"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 12,
+      "particion": "test",
+      "sbp_media": 119.4,
+      "subject_id": "SUBJ-03896"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 44,
+      "particion": "test",
+      "sbp_media": 161.3,
+      "subject_id": "SUBJ-03976"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 24,
+      "particion": "test",
+      "sbp_media": 100.1,
+      "subject_id": "SUBJ-04764"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 10,
+      "particion": "train",
+      "sbp_media": 109.3,
+      "subject_id": "SUBJ-00013"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 42,
+      "particion": "train",
+      "sbp_media": 97.6,
+      "subject_id": "SUBJ-00640"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 34,
+      "particion": "train",
+      "sbp_media": 104.3,
+      "subject_id": "SUBJ-00816"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 48,
+      "particion": "train",
+      "sbp_media": 113.3,
+      "subject_id": "SUBJ-00917"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 50,
+      "particion": "train",
+      "sbp_media": 114.1,
+      "subject_id": "SUBJ-00933"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 59,
+      "particion": "train",
+      "sbp_media": 112.7,
+      "subject_id": "SUBJ-01256"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 58,
+      "particion": "train",
+      "sbp_media": 103.3,
+      "subject_id": "SUBJ-01370"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 59,
+      "particion": "train",
+      "sbp_media": 142.5,
+      "subject_id": "SUBJ-01449"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 12,
+      "particion": "train",
+      "sbp_media": 112.5,
+      "subject_id": "SUBJ-01878"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 14,
+      "particion": "train",
+      "sbp_media": 136.9,
+      "subject_id": "SUBJ-02229"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 60,
+      "particion": "train",
+      "sbp_media": 115.6,
+      "subject_id": "SUBJ-02265"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 57,
+      "particion": "train",
+      "sbp_media": 126.6,
+      "subject_id": "SUBJ-02311"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 3,
+      "particion": "train",
+      "sbp_media": 140.8,
+      "subject_id": "SUBJ-02322"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 55,
+      "particion": "train",
+      "sbp_media": 113.7,
+      "subject_id": "SUBJ-02544"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 6,
+      "particion": "train",
+      "sbp_media": 118.6,
+      "subject_id": "SUBJ-02575"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 60,
+      "particion": "train",
+      "sbp_media": 134.9,
+      "subject_id": "SUBJ-03134"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 1,
+      "particion": "train",
+      "sbp_media": 137.6,
+      "subject_id": "SUBJ-03309"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 6,
+      "particion": "train",
+      "sbp_media": 149.1,
+      "subject_id": "SUBJ-03339"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 2,
+      "particion": "train",
+      "sbp_media": 96.1,
+      "subject_id": "SUBJ-03606"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 2,
+      "particion": "train",
+      "sbp_media": 97.4,
+      "subject_id": "SUBJ-03900"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 53,
+      "particion": "train",
+      "sbp_media": 100.7,
+      "subject_id": "SUBJ-05195"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 20,
+      "particion": "val",
+      "sbp_media": 114.6,
+      "subject_id": "SUBJ-00276"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 29,
+      "particion": "val",
+      "sbp_media": 106.2,
+      "subject_id": "SUBJ-01405"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 54,
+      "particion": "val",
+      "sbp_media": 101.7,
+      "subject_id": "SUBJ-01707"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 15,
+      "particion": "val",
+      "sbp_media": 116.2,
+      "subject_id": "SUBJ-02376"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 12,
+      "particion": "val",
+      "sbp_media": 128.2,
+      "subject_id": "SUBJ-03579"
+    },
+    {
+      "fuentes": "VitalDB",
+      "n_ventanas": 57,
+      "particion": "val",
+      "sbp_media": 108.3,
+      "subject_id": "SUBJ-03867"
+    },
+    {
+      "fuentes": "MIMIC",
+      "n_ventanas": 59,
+      "particion": "val",
+      "sbp_media": 94.7,
+      "subject_id": "SUBJ-04905"
+    }
+  ]
+}

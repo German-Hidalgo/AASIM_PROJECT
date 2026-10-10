@@ -1,0 +1,50 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{float}
+\geometry{margin=2.5cm}
+
+\title{\textbf{Fase 3: Modelado Predictivo - Informe AASIM}}
+\author{Sistema AASIM}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este informe presenta los resultados preliminares de la Fase 3 del Sistema AASIM, cuyo objetivo es estimar la Presión Arterial Sistólica (PAS) a partir de formas de onda de ECG (MIMIC-III y VitalDB). La base de datos analítica (ABT) se construyó utilizando la muestra procesada en la Fase 2, asegurando particiones sin fuga de datos por paciente.
+
+\section{Evaluación de Modelos Base (Baselines)}
+Se establecieron líneas base utilizando modelos lineales y un predictor ingenuo (\textit{Dummy}). Los resultados de validación cruzada muestran que la tarea predictiva es compleja dadas las características extraídas:
+
+\begin{itemize}
+    \item \textbf{Dummy (Media):} MAE = 16.25 mmHg. Esto significa que si el sistema siempre predice la presión promedio, se equivoca por 16.25 mmHg.
+    \item \textbf{SVR (Vectores de Soporte):} MAE = 14.69 mmHg. Logra mejorar la predicción de la línea base.
+    \item \textbf{Ridge (Regresión Lineal):} MAE = 28.13 mmHg. No logró un ajuste adecuado.
+\end{itemize}
+
+\section{Evaluación de Modelos Avanzados}
+La muestra extraída en esta prueba diagnóstica cuenta con $n=691$ ventanas de entrenamiento, lo cual es muy reducido para algoritmos de alta complejidad. Los resultados evidencian un sobreajuste (\textit{overfitting}) severo:
+
+\begin{itemize}
+    \item \textbf{Random Forest:} MAE = 19.63 mmHg
+    \item \textbf{LightGBM:} MAE = 19.64 mmHg
+    \item \textbf{MLP (PyTorch):} MAE = 32.65 mmHg
+\end{itemize}
+
+El exceso de parámetros en redes neuronales (MLP) y ensambles (GBM, RF) impide que el modelo generalice, rindiendo peor que el predictor \textit{Dummy}.
+
+\section{Evidencia Anti-Fuga}
+El módulo de validación certificó criptográficamente que ningún paciente se mezcló entre las particiones de entrenamiento y validación, mitigando el riesgo de fuga (\textit{leakage}).
+
+\section{Conclusiones}
+1. El modelo base \textbf{SVR} fue el más robusto para la baja volumetría de la prueba (MAE = 14.7 mmHg).
+2. Los modelos de \textit{Deep Learning} requieren procesar la base de datos completa de 5,361 sujetos en lugar de una muestra de 41 sujetos.
+3. Se recomienda escalar la extracción de ventanas en la Fase 2 antes de iniciar la búsqueda de hiperparámetros (Tuning) de la Fase 3 final.
+
+\end{document}
